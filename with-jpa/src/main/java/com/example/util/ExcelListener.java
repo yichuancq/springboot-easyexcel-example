@@ -12,9 +12,15 @@ import java.util.List;
  * 监听类，可以自定义
  */
 public class ExcelListener extends AnalysisEventListener {
+    /**
+     * 批处理阈值2000
+     */
+    //private static final int BATCH_COUNT = 2000;
+    /**
+     * 自定义用于暂时存储data。
+     * 可以通过实例获取该值
+     */
 
-    //自定义用于暂时存储data。
-    //可以通过实例获取该值
     private List<Object> datas = new ArrayList<>();
 
     /**
@@ -26,17 +32,13 @@ public class ExcelListener extends AnalysisEventListener {
         datas.add(object);
         //根据业务自行 do something
         doSomething();
-
-        /*
-        如数据过大，可以进行定量分批处理
-        if(datas.size()<=100){
-            datas.add(object);
-        }else {
-            doSomething();
-            datas = new ArrayList<Object>();
-        }
-         */
-
+        //如数据过大，可以进行定量分批处理
+//        if (datas.size() <= BATCH_COUNT) {
+//            datas.add(object);
+//        } else {
+//            doSomething();
+//            datas = new ArrayList<Object>();
+//        }
     }
 
     /**
