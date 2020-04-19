@@ -11,4 +11,10 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="with-jpa" options="-parameters" />
+      <module name="with-mybatis" options="-parameters" />
+    </option>
+  </component>
 </project>
