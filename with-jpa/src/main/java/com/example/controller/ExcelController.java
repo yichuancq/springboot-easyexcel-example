@@ -66,6 +66,24 @@ public class ExcelController {
         ExcelUtil.writeExcel(response, list, fileName, sheetName, new ExportInfo());
     }
 
+//    /**
+//     * 导出 Excel（多个 sheet）
+//     */
+//    @ApiOperation(value = "writeExcelWithSheets", notes = "writeExcelWithSheets")
+//    @RequestMapping(value = "writeExcelWithSheets", method = RequestMethod.GET)
+//    public void writeExcelWithSheets(HttpServletResponse response) throws IOException {
+//        List<ExportInfo> list = getList();
+//        String fileName = "一个 Excel 文件";
+//        String sheetName1 = "第一个 sheet";
+//        String sheetName2 = "第二个 sheet";
+//        String sheetName3 = "第三个 sheet";
+//        ExcelUtil.writeExcelWithSheets(response, list, fileName,
+//                sheetName1, new ExportInfo())
+//                .write(list, sheetName2, new ExportInfo())
+//                .write(list, sheetName3, new ExportInfo())
+//                .finish();
+//    }
+
     private List<MultiLineHeadExcelModel> getMultiHeaderExcelData() {
         List<MultiLineHeadExcelModel> list = new ArrayList<>();
         MultiLineHeadExcelModel model1 = new MultiLineHeadExcelModel();
