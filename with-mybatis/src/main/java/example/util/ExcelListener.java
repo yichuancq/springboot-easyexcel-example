@@ -15,7 +15,7 @@ public class ExcelListener extends AnalysisEventListener {
     /**
      * 批处理阈值2000
      */
-    //private static final int BATCH_COUNT = 2000;
+    private static final int BATCH_COUNT = 2000;
     /**
      * 自定义用于暂时存储data。
      * 可以通过实例获取该值
@@ -28,17 +28,13 @@ public class ExcelListener extends AnalysisEventListener {
      */
     @Override
     public void invoke(Object object, AnalysisContext context) {
-        //数据存储到list，供批量处理，或后续自己业务逻辑处理。
-        datas.add(object);
-        //根据业务自行 do something
-        doSomething();
-        //如数据过大，可以进行定量分批处理
-//        if (datas.size() <= BATCH_COUNT) {
-//            datas.add(object);
-//        } else {
-//            doSomething();
-//            datas = new ArrayList<Object>();
-//        }
+        // 如数据过大，可以进行定量分批处理
+        if (datas.size() <= BATCH_COUNT) {
+            datas.add(object);
+        } else {
+            doSomething();
+            datas = new ArrayList<Object>();
+        }
     }
 
     /**
@@ -47,12 +43,14 @@ public class ExcelListener extends AnalysisEventListener {
     private void doSomething() {
     }
 
+    /**
+     * 解析结束销毁不用的资源
+     *
+     * @param context
+     */
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-        /*
-            datas.clear();
-            解析结束销毁不用的资源
-         */
+        datas.clear();
     }
 
     public List<Object> getDatas() {

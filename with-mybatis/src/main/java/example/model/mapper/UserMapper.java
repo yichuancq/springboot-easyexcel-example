@@ -9,6 +9,15 @@ import java.util.List;
  */
 public interface UserMapper {
 
+    /**
+     * @return
+     */
     List<UserInfo> getAll();
 
+    /**
+     * 分页查询用户
+     *
+     * @return
+     */
+    List<UserInfo> selectPage();
 }

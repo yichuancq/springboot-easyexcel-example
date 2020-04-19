@@ -15,7 +15,16 @@
     <sql id="Base_Column_List">
         user_id, name, age,user_sex, address,email
     </sql>
+
+    <!--返回所有记录-->
     <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_info
+    </select>
+
+    <!--分页查询-->
+    <select id="selectPage" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM user_info
