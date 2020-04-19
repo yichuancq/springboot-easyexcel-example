@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="example.model.mapper.UserMapper">
-
     <resultMap id="BaseResultMap" type="example.model.user.UserInfo">
         <id column="user_id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
@@ -29,6 +28,7 @@
         <include refid="Base_Column_List"/>
         FROM user_info
     </select>
+
     <!--save addUserInfo-->
     <insert id="addUserInfo" useGeneratedKeys="true"
             keyColumn="user_id"
@@ -38,4 +38,24 @@
            VALUES (#{name},#{age},#{userSex},#{address},#{email},now(),now(),0)
     </insert>
 
+    <!-- 用户信息批量保存-->
+    <insert id="addAllUserInfo"
+            parameterType="java.util.List" useGeneratedKeys="true"
+            keyColumn="user_id"
+            keyProperty="id">
+        insert into user_info (name, age,user_sex, address,email,create_time,update_time,version)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.name},
+            #{item.age},
+            #{item.userSex},
+            #{item.address},
+            #{item.email},
+            now(),
+            now(),
+            0
+            )
+        </foreach>
+    </insert>
 </mapper>

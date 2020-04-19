@@ -36,6 +36,11 @@ public class UserApplication {
 
     }
 
+    public int saveAllUserInfo(List<UserInfo> userInfos) {
+        return userMapper.addAllUserInfo(userInfos);
+
+    }
+
     /**
      * 导出数据构造
      *
