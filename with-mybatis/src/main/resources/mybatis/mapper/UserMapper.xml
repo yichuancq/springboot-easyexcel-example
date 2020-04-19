@@ -46,16 +46,7 @@
         insert into user_info (name, age,user_sex, address,email,create_time,update_time,version)
         values
         <foreach collection="list" item="item" index="index" separator=",">
-            (
-            #{item.name},
-            #{item.age},
-            #{item.userSex},
-            #{item.address},
-            #{item.email},
-            now(),
-            now(),
-            0
-            )
+            (#{item.name},#{item.age},#{item.userSex},#{item.address},#{item.email},now(),now(),0)
         </foreach>
     </insert>
 </mapper>
