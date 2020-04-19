@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.model.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
@@ -12,7 +12,7 @@ public class ExportInfo extends BaseRowModel {
     private String name;
 
     @ExcelProperty(value = "年龄",index = 1)
-    private String age;
+    private Integer age;
 
     @ExcelProperty(value = "邮箱",index = 2)
     private String email;
@@ -28,11 +28,11 @@ public class ExportInfo extends BaseRowModel {
         this.name = name;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

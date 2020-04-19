@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.model.ExportInfo;
-import com.example.model.ImportInfo;
-import com.example.model.MultiLineHeadExcelModel;
+import com.example.model.excel.ExportInfo;
+import com.example.model.excel.ImportInfo;
+import com.example.model.excel.MultiLineHeadExcelModel;
 import com.example.util.ExcelUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,13 +89,13 @@ public class ExcelController {
         List<ExportInfo> list = new ArrayList<>();
         ExportInfo model1 = new ExportInfo();
         model1.setName("howie");
-        model1.setAge("19");
+        model1.setAge(19);
         model1.setAddress("123456789");
         model1.setEmail("123456789@gmail.com");
         list.add(model1);
         ExportInfo model2 = new ExportInfo();
         model2.setName("harry");
-        model2.setAge("20");
+        model2.setAge(29);
         model2.setAddress("198752233");
         model2.setEmail("198752233@gmail.com");
         list.add(model2);

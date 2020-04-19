@@ -2,8 +2,8 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.example.EasyExcelApplication;
-import com.example.model.ExportInfo;
-import com.example.model.MultiLineHeadExcelModel;
+import com.example.model.excel.ExportInfo;
+import com.example.model.excel.MultiLineHeadExcelModel;
 import com.example.util.StyleExcelHandler;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
@@ -28,13 +28,13 @@ public class ReadTest {
         List<ExportInfo> list = new ArrayList<>();
         ExportInfo model1 = new ExportInfo();
         model1.setName("howie");
-        model1.setAge("19");
+        model1.setAge(19);
         model1.setAddress("123456789");
         model1.setEmail("123456789@gmail.com");
         list.add(model1);
         ExportInfo model2 = new ExportInfo();
         model2.setName("harry");
-        model2.setAge("20");
+        model2.setAge(29);
         model2.setAddress("198752233");
         model2.setEmail("198752233@gmail.com");
         list.add(model2);
@@ -65,7 +65,9 @@ public class ReadTest {
 
     }
 
-    /** 复杂表头
+    /**
+     * 复杂表头
+     *
      * @throws IOException
      */
     @Test

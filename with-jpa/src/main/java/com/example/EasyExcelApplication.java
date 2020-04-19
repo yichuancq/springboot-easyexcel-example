@@ -14,6 +14,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
  * https://alibaba-easyexcel.github.io/quickstart/fill.html
+ *
  * @author yichuan
  */
 
@@ -21,6 +22,9 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @SpringBootApplication
 public class EasyExcelApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(EasyExcelApplication.class, args);
+    }
 
     /**
      * 可以定义多个组，比如本类中定义把test和demo区分开了
@@ -56,7 +60,5 @@ public class EasyExcelApplication {
         );
         return apiInfo;
     }
-    public static void main(String[] args) {
-        SpringApplication.run(EasyExcelApplication.class, args);
-    }
+
 }
