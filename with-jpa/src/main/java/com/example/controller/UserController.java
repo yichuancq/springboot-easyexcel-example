@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.application.UserApplication;
-import com.example.model.excel.ExportInfo;
+import com.example.model.excel.UserInfoExportVo;
 import com.example.model.user.UserInfo;
 import com.example.util.ExcelUtil;
 import com.example.vo.ResultDTO;
@@ -33,7 +33,9 @@ public class UserController {
         return ResponseEntity.ok(resultDTO);
     }
 
-    /** localhost:8080/exportUserInfoExcel?limit=1000&page=1
+    /**
+     * localhost:8080/exportUserInfoExcel?limit=1000&page=1
+     *
      * @param response
      * @param page
      * @param limit
@@ -49,7 +51,7 @@ public class UserController {
         String fileName = "UserInfoExcel文件";
         String sheetName = "第一个sheet";
         ExcelUtil.writeExcel(response, userApplication.exportUserInfo(userInfo, page, limit),
-                fileName, sheetName, new ExportInfo());
+                fileName, sheetName, new UserInfoExportVo());
     }
 
 }

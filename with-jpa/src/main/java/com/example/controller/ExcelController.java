@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.model.excel.ExportInfo;
 import com.example.model.excel.ImportInfo;
 import com.example.model.excel.MultiLineHeadExcelModel;
+import com.example.model.excel.UserInfoExportVo;
 import com.example.util.ExcelUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,11 +46,11 @@ public class ExcelController {
     @ApiOperation(value = "writeExcel", notes = "writeExcel")
     @RequestMapping(value = "writeExcel", method = RequestMethod.GET)
     public void writeExcel(HttpServletResponse response) throws IOException {
-        List<ExportInfo> list = getList();
+        List<UserInfoExportVo> list = getList();
         String fileName = "一个 Excel 文件";
         String sheetName = "第一个 sheet";
 
-        ExcelUtil.writeExcel(response, list, fileName, sheetName, new ExportInfo());
+        ExcelUtil.writeExcel(response, list, fileName, sheetName, new UserInfoExportVo());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ExcelController {
         String fileName = "一个复杂表头的Excel文件";
         String sheetName = "第一个 sheet";
         //
-        ExcelUtil.writeExcel(response, list, fileName, sheetName, new ExportInfo());
+        ExcelUtil.writeExcel(response, list, fileName, sheetName, new UserInfoExportVo());
     }
 
     private List<MultiLineHeadExcelModel> getMultiHeaderExcelData() {
@@ -83,17 +83,15 @@ public class ExcelController {
         }
         return data;
     }
-
-
-    private List<ExportInfo> getList() {
-        List<ExportInfo> list = new ArrayList<>();
-        ExportInfo model1 = new ExportInfo();
+    private List<UserInfoExportVo> getList() {
+        List<UserInfoExportVo> list = new ArrayList<>();
+        UserInfoExportVo model1 = new UserInfoExportVo();
         model1.setName("howie");
         model1.setAge(19);
         model1.setAddress("123456789");
         model1.setEmail("123456789@gmail.com");
         list.add(model1);
-        ExportInfo model2 = new ExportInfo();
+        UserInfoExportVo model2 = new UserInfoExportVo();
         model2.setName("harry");
         model2.setAge(29);
         model2.setAddress("198752233");

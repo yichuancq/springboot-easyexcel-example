@@ -14,7 +14,7 @@ import javax.persistence.Enumerated;
  * @author yichuan
  */
 @Data
-public class ExportInfo extends BaseRowModel {
+public class UserInfoExportVo extends BaseRowModel {
     @ExcelProperty(value = "姓名", index = 0)
     private String name;
 

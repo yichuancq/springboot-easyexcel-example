@@ -2,8 +2,8 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.example.EasyExcelApplication;
-import com.example.model.excel.ExportInfo;
 import com.example.model.excel.MultiLineHeadExcelModel;
+import com.example.model.excel.UserInfoExportVo;
 import com.example.util.StyleExcelHandler;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
@@ -24,15 +24,15 @@ import java.util.Map;
 @SpringBootTest(classes = EasyExcelApplication.class)
 public class ReadTest {
 
-    private List<ExportInfo> getList() {
-        List<ExportInfo> list = new ArrayList<>();
-        ExportInfo model1 = new ExportInfo();
+    private List<UserInfoExportVo> getList() {
+        List<UserInfoExportVo> list = new ArrayList<>();
+        UserInfoExportVo model1 = new UserInfoExportVo();
         model1.setName("howie");
         model1.setAge(19);
         model1.setAddress("123456789");
         model1.setEmail("123456789@gmail.com");
         list.add(model1);
-        ExportInfo model2 = new ExportInfo();
+        UserInfoExportVo model2 = new UserInfoExportVo();
         model2.setName("harry");
         model2.setAge(29);
         model2.setAddress("198752233");
@@ -48,7 +48,7 @@ public class ReadTest {
         // 这里要把上面创建的样式类通过构造函数传入
         ExcelWriter writer = new ExcelWriter(null, outputStream,
                 ExcelTypeEnum.XLSX, true, handler);
-        Sheet sheet1 = new Sheet(1, 1, ExportInfo.class,
+        Sheet sheet1 = new Sheet(1, 1, UserInfoExportVo.class,
                 "userInfo", null);
         //设置列宽 设置每列的宽度
         Map columnWidth = new HashMap();

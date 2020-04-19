@@ -1,6 +1,6 @@
 package com.example.application;
 
-import com.example.model.excel.ExportInfo;
+import com.example.model.excel.UserInfoExportVo;
 import com.example.model.user.UserInfo;
 import com.example.service.UserInfoService;
 import com.example.vo.ResultDTO;
@@ -30,13 +30,13 @@ public class UserApplication {
      * @param pageSize
      * @return
      */
-    public List<ExportInfo> exportUserInfo(UserInfo userInfo, int pageNumber, int pageSize) {
+    public List<UserInfoExportVo> exportUserInfo(UserInfo userInfo, int pageNumber, int pageSize) {
 
         ResultDTO resultDTO = this.findByPage(userInfo, pageNumber, pageSize);
         List<UserInfo> userInfos = (List<UserInfo>) resultDTO.getData();
-        List<ExportInfo> list = new ArrayList<>();
+        List<UserInfoExportVo> list = new ArrayList<>();
         for (UserInfo userInfoTemp : userInfos) {
-            ExportInfo model1 = new ExportInfo();
+            UserInfoExportVo model1 = new UserInfoExportVo();
             model1.setName(userInfoTemp.getName());
             model1.setAge(userInfoTemp.getAge());
             model1.setAddress(userInfoTemp.getAddress());
