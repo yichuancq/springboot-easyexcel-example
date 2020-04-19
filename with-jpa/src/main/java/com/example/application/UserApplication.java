@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -42,6 +45,10 @@ public class UserApplication {
             model1.setAddress(userInfoTemp.getAddress());
             model1.setEmail(userInfoTemp.getEmail());
             model1.setUserSex(userInfoTemp.getUserSex());
+            //convert date
+            LocalDateTime localDateTime = userInfoTemp.getCreateTime();
+            Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            model1.setCreateTime(date);
             list.add(model1);
         }
         return list;

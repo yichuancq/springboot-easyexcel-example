@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Date;
 
 /**
  * 导出 Excel 时使用的映射实体类，Excel 模型
@@ -15,6 +16,7 @@ import javax.persistence.Enumerated;
  */
 @Data
 public class UserInfoExportVo extends BaseRowModel {
+
     @ExcelProperty(value = "姓名", index = 0)
     private String name;
 
@@ -30,5 +32,10 @@ public class UserInfoExportVo extends BaseRowModel {
     @ExcelProperty(value = "性别", index = 4)
     @Enumerated(EnumType.STRING)
     private UserSexEnum userSex;
+    /**
+     * 只支持 java.util.Date格式化
+     */
+    @ExcelProperty(value = "创建时间", format = "yyyy-MM-dd HH:mm:ss", index = 5)
+    private Date createTime;
 
 }
