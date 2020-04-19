@@ -29,5 +29,13 @@
         <include refid="Base_Column_List"/>
         FROM user_info
     </select>
+    <!--save addUserInfo-->
+    <insert id="addUserInfo" useGeneratedKeys="true"
+            keyColumn="user_id"
+            keyProperty="id"
+            parameterType="example.model.user.UserInfo">
+        INSERT INTO user_info(name, age,user_sex, address,email,create_time,update_time,version)
+           VALUES (#{name},#{age},#{userSex},#{address},#{email},now(),now(),0)
+    </insert>
 
 </mapper>

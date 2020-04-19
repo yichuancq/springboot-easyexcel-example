@@ -26,6 +26,17 @@ public class UserApplication {
     }
 
     /**
+     * save
+     *
+     * @param userInfo
+     * @return
+     */
+    public int saveUserInfo(UserInfo userInfo) {
+        return userMapper.addUserInfo(userInfo);
+
+    }
+
+    /**
      * 导出数据构造
      *
      * @param pageNumber
@@ -51,8 +62,6 @@ public class UserApplication {
         }
         return list;
     }
-
-
     /**
      * @param pageNumber
      * @param pageSize
