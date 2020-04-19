@@ -3,6 +3,7 @@ import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.example.EasyExcelApplication;
 import com.example.model.ExportInfo;
+import com.example.model.MultiLineHeadExcelModel;
 import com.example.util.StyleExcelHandler;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,5 +63,33 @@ public class ReadTest {
         writer.finish();
         outputStream.close();
 
+    }
+
+    /** 复杂表头
+     * @throws IOException
+     */
+    @Test
+    public void writeWithMultiHead() throws IOException {
+        try (OutputStream out = new FileOutputStream("withMultiHead.xlsx");) {
+            ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
+            Sheet sheet1 = new Sheet(1, 0, MultiLineHeadExcelModel.class);
+            sheet1.setSheetName("sheet1");
+            List<MultiLineHeadExcelModel> data = new ArrayList<>();
+            for (int i = 0; i < 100; i++) {
+                MultiLineHeadExcelModel item = new MultiLineHeadExcelModel();
+                item.setP1("p1" + i);
+                item.setP2("p2" + i);
+                item.setP3("p3" + i);
+                item.setP4("p4" + i);
+                item.setP5("p5" + i);
+                item.setP6("p6" + i);
+                item.setP7("p7" + i);
+                item.setP8("p8" + i);
+                item.setP9("p9" + i);
+                data.add(item);
+            }
+            writer.write(data, sheet1);
+            writer.finish();
+        }
     }
 }

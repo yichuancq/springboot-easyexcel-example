@@ -56,49 +56,32 @@ public class ExcelController {
     /**
      * 导出 Excel（一个 sheet）
      */
-    @ApiOperation(value = "writeMultiLineHeadExcel", notes = "writeMultiLineHeadExcel")
+    @ApiOperation(value = "writeMultiLineHeadExcel", notes = "一个复杂表头的Excel")
     @RequestMapping(value = "writeMultiLineHeadExcel", method = RequestMethod.GET)
     public void writeMultiLineHeadExcel(HttpServletResponse response) throws IOException {
         List<MultiLineHeadExcelModel> list = getMultiHeaderExcelData();
-        String fileName = "一个复杂表头的Excel 文件";
+        String fileName = "一个复杂表头的Excel文件";
         String sheetName = "第一个 sheet";
-
+        //
         ExcelUtil.writeExcel(response, list, fileName, sheetName, new ExportInfo());
     }
 
-//    /**
-//     * 导出 Excel（多个 sheet）
-//     */
-//    @ApiOperation(value = "writeExcelWithSheets", notes = "writeExcelWithSheets")
-//    @RequestMapping(value = "writeExcelWithSheets", method = RequestMethod.GET)
-//    public void writeExcelWithSheets(HttpServletResponse response) throws IOException {
-//        List<ExportInfo> list = getList();
-//        String fileName = "一个 Excel 文件";
-//        String sheetName1 = "第一个 sheet";
-//        String sheetName2 = "第二个 sheet";
-//        String sheetName3 = "第三个 sheet";
-//        ExcelUtil.writeExcelWithSheets(response, list, fileName,
-//                sheetName1, new ExportInfo())
-//                .write(list, sheetName2, new ExportInfo())
-//                .write(list, sheetName3, new ExportInfo())
-//                .finish();
-//    }
-
     private List<MultiLineHeadExcelModel> getMultiHeaderExcelData() {
-        List<MultiLineHeadExcelModel> list = new ArrayList<>();
-        MultiLineHeadExcelModel model1 = new MultiLineHeadExcelModel();
-        model1.setP1("howie");
-        model1.setP2("19");
-        model1.setP3(11);
-        model1.setP4(23);
-        list.add(model1);
-        MultiLineHeadExcelModel model2 = new MultiLineHeadExcelModel();
-        model2.setP1("harry");
-        model2.setP2("20");
-        model2.setP3(34);
-        model2.setP3(43);
-        list.add(model2);
-        return list;
+        List<MultiLineHeadExcelModel> data = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            MultiLineHeadExcelModel item = new MultiLineHeadExcelModel();
+            item.setP1("p1" + i);
+            item.setP2("p2" + i);
+            item.setP3("p3" + i);
+            item.setP4("p4" + i);
+            item.setP5("p5" + i);
+            item.setP6("p6" + i);
+            item.setP7("p7" + i);
+            item.setP8("p8" + i);
+            item.setP9("p9" + i);
+            data.add(item);
+        }
+        return data;
     }
 
 
