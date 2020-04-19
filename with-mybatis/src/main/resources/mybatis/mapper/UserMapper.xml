@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.model.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="example.model.user.UserInfo">
+        <id column="user_id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="user_sex" property="userSex"
+                javaType="example.model.user.UserSexEnum"
+                jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id, name, age,user_sex, address,email
+    </sql>
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_info
+    </select>
+
+</mapper>
