@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.model.mapper.SysPermissionMapper">
+
+    <resultMap id="BaseResultMap" type="example.model.permission.SysPermission">
+        <id column="permission_id" property="id" jdbcType="BIGINT"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+        <!--角色状态-->
+        <result column="element_type" property="elementTypeEnum"
+                javaType="example.model.permission.ElementTypeEnum"
+                jdbcType="VARCHAR"/>
+        <!--子权限-->
+        <collection property="childPermissionList" resultMap="BatchListChildPermissionResultMap"/>
+    </resultMap>
+
+    <!--rolePermission-->
+    <resultMap id="BatchListChildPermissionResultMap" type="example.model.permission.SysPermission">
+        <id column="permission_id" property="id" jdbcType="BIGINT"/>
+        <id column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <!--type-->
+        <result column="element_type" property="elementTypeEnum"
+                javaType="example.model.permission.ElementTypeEnum"
+                jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+    </resultMap>
+    <!-- save-->
+    <insert id="addSysPermission"
+            useGeneratedKeys="true"
+            keyColumn="permission_id"
+            keyProperty="id"
+            parameterType="example.model.permission.SysPermission">
+     INSERT INTO sys_permission(parent_id,element_type,url,permission_name,memo,create_time,update_time,version)
+           VALUES ( #{parentId},#{elementTypeEnum}, #{url}, #{permissionName},#{memo}, now(), now(),0)
+     </insert>
+
+
+    <select id="findOneById" resultType="example.model.permission.SysPermission">
+        SELECT *
+        FROM sys_permission where 1=1 and permission_id=#{permissionId}
+    </select>
+
+    <select id="findChildPermissionsById" resultType="example.model.permission.SysPermission">
+      select distinct a.permission_id as id,
+        a.permission_name as permissionName,
+        a.url,
+        a.element_type as elementTypeEnum,
+        a.memo,
+        a.parent_id as parentId
+      from sys_permission a left join sys_permission b
+      on a.permission_id=b.parent_id
+
+    </select>
+</mapper>

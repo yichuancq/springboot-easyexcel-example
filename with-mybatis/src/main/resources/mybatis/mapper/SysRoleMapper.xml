@@ -13,6 +13,20 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
+        <!--权限-->
+        <collection property="sysRolePermissionList" resultMap="BatchListPermissionResultMap"/>
+    </resultMap>
+
+    <!--rolePermission-->
+    <resultMap id="BatchListPermissionResultMap" type="example.model.permission.SysPermission">
+        <id column="permission_id" property="id" jdbcType="BIGINT"/>
+        <id column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
     </resultMap>
     <!--基础类List-->
     <sql id="Base_Column_List">

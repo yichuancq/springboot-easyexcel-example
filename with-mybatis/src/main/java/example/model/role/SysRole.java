@@ -4,6 +4,8 @@ import example.model.user.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * 角色
  *
@@ -29,4 +31,8 @@ public class SysRole extends BaseEntity {
      * 备注
      */
     private String memo;
+    /**
+     * sysRolePermissionList
+     */
+    private List<SysRolePermission> sysRolePermissionList;
 }

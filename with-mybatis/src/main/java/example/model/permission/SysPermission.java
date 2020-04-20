@@ -40,5 +40,9 @@ public class SysPermission extends BaseEntity {
      * 子权限
      */
     private List<SysPermission> childPermissionList;
+    /**
+     *
+     */
+    private String memo;
 
 }

@@ -31,14 +31,12 @@
     <delete id="deleteOneById">
       delete from user_info where user_id=#{userId}
     </delete>
-
     <!--返回所有记录-->
     <select id="getAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM user_info
     </select>
-
     <!--分页查询-->
     <select id="selectPage" resultMap="BaseResultMap">
         SELECT
@@ -61,13 +59,12 @@
         select r.role_id, r.role_name,r.role_status,r.create_time,r.update_time,r.memo,r.version,
            u.user_id as id,
            u.name as name,
-           u.user_sex as sex
+           u.user_sex as userSex
           from user_info u
             left join sys_user_role ur on ur.user_id=u.user_id
             left join sys_role r on  r.role_id=ur.role_id
           and u.user_id=#{userId}
     </select>
-
     <!--save addUserInfo-->
     <insert id="addUserInfo"
             useGeneratedKeys="true"
@@ -77,7 +74,6 @@
         INSERT INTO user_info(name, age,user_sex, address,email,create_time,update_time,version)
            VALUES (#{name},#{age},#{userSex},#{address},#{email},now(),now(),0)
     </insert>
-
     <!-- 用户信息批量保存-->
     <insert id="addAllUserInfo"
             parameterType="java.util.List" useGeneratedKeys="true"
