@@ -82,6 +82,7 @@ public class UserTest {
             List<SysRole> sysRoles = userInfo.getSysRoleList();
             if (sysRoles != null && sysRoles.size() > 0) {
                 for (SysRole sysRole : sysRoles) {
+                    System.out.println(sysRole.toString());
                     System.out.println("roleName:" + sysRole.getRoleName());
                 }
             }

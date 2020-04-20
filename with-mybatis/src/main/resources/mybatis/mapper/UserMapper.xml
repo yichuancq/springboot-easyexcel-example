@@ -58,7 +58,7 @@
     <select id="findUserRolesByUserId"
             resultMap="BaseResultMap"
             resultType="example.model.user.UserInfo">
-        select r.role_id, r.role_name ,r.create_time,r.update_time,r.memo,r.version,
+        select r.role_id, r.role_name,r.role_status,r.create_time,r.update_time,r.memo,r.version,
            u.user_id as id,
            u.name as name,
            u.user_sex as sex
