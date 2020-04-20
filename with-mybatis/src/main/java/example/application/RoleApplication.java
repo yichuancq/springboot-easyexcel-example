@@ -20,7 +20,6 @@ public class RoleApplication {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-
     /**
      * @param userId
      * @return

@@ -5,6 +5,9 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * @author yichuan
+ */
 public abstract class BaseEntity implements Serializable {
     /**
      * 创建时间a

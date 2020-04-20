@@ -6,7 +6,6 @@ import example.model.role.UserSysRole;
 import java.util.List;
 
 /**
- *
  * @author yichuan
  */
 public interface UserRoleMapper {
@@ -19,5 +18,9 @@ public interface UserRoleMapper {
      */
     List<SysRole> selectRolesByUserId(Long userId);
 
+    /**
+     * @param userSysRole
+     * @return
+     */
     int addUserRole(UserSysRole userSysRole);
 }
