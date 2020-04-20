@@ -45,7 +45,8 @@
     </select>
 
     <!--save addUserInfo-->
-    <insert id="addUserInfo" useGeneratedKeys="true"
+    <insert id="addUserInfo"
+            useGeneratedKeys="true"
             keyColumn="user_id"
             keyProperty="id"
             parameterType="example.model.user.UserInfo">

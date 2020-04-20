@@ -2,6 +2,7 @@ package example.model.role;
 
 import example.model.user.BaseEntity;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 角色
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author yichuan
  */
 @Data
+@ToString
 public class SysRole extends BaseEntity {
     /**
      * id
@@ -27,9 +29,4 @@ public class SysRole extends BaseEntity {
      * 备注
      */
     private String memo;
-
-    /**
-     * 角色权限
-     */
-    //List<SysPermission> sysPermissionList;
 }
