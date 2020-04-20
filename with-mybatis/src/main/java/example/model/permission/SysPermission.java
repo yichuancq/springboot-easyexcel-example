@@ -28,7 +28,6 @@ public class SysPermission extends BaseEntity {
      * URL
      */
     private String url;
-
     /**
      * 资源类型
      */
@@ -40,6 +39,6 @@ public class SysPermission extends BaseEntity {
     /**
      * 子权限
      */
-    private List<SysPermission> childList;
+    private List<SysPermission> childPermissionList;
 
 }

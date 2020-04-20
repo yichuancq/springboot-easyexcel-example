@@ -61,7 +61,6 @@ public class RoleTest {
             System.out.println("" + sysRole.toString());
             System.out.println("getCreateTime:" + sysRole.getCreateTime());
         }
-
     }
 
 }

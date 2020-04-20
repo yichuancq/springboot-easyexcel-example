@@ -31,7 +31,9 @@ public class UserApplication {
         return userMapper.getAll();
     }
 
-
+    public UserInfo findUserRoleByUserId(long userId){
+        return  userMapper.findUserRolesByUserId(userId);
+    }
     /**
      * findOneById
      *

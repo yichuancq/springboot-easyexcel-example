@@ -10,8 +10,18 @@
                 jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
+        <collection property="sysRoleList" resultMap="BatchListRoleResultMap"/>
     </resultMap>
-
+    <!--role-->
+    <resultMap id="BatchListRoleResultMap" type="example.model.role.SysRole">
+        <id column="role_id" property="id" jdbcType="INTEGER"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <!--角色状态-->
+        <result column="role_status" property="roleStatus"
+                javaType="example.model.role.RoleStatusEnum"
+                jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+    </resultMap>
     <!--基础类List-->
     <sql id="Base_Column_List">
         user_id, name, age,user_sex, address,email
@@ -42,6 +52,20 @@
         <include refid="Base_Column_List"/>
         FROM user_info where 1=1 and user_id=#{userId}
 
+    </select>
+
+    <!--通过用户ID查询角色-->
+    <select id="findUserRolesByUserId"
+            resultMap="BaseResultMap"
+            resultType="example.model.user.UserInfo">
+        select r.role_id, r.role_name ,r.create_time,r.update_time,r.memo,r.version,
+           u.user_id as id,
+           u.name as name,
+           u.user_sex as sex
+          from user_info u
+            left join sys_user_role ur on ur.user_id=u.user_id
+            left join sys_role r on  r.role_id=ur.role_id
+          and u.user_id=#{userId}
     </select>
 
     <!--save addUserInfo-->

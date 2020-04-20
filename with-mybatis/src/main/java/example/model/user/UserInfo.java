@@ -1,7 +1,10 @@
 package example.model.user;
 
+import example.model.role.SysRole;
 import lombok.Data;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * userInfo
@@ -20,4 +23,8 @@ public class UserInfo extends BaseEntity {
      * sex
      */
     private UserSexEnum userSex;
+    /**
+     * role
+     */
+    private List<SysRole> sysRoleList;
 }

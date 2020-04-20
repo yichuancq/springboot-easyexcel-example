@@ -1,5 +1,6 @@
 import example.EasyExcelMyBatisApplication;
 import example.application.UserApplication;
+import example.model.role.SysRole;
 import example.model.user.UserInfo;
 import example.model.user.UserSexEnum;
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -38,7 +39,7 @@ public class UserTest {
 
     @Test
     public void findOneById() {
-        UserInfo userInfo = userApplication.findOneById(4);
+        UserInfo userInfo = userApplication.findOneById(1);
         if (userInfo != null) {
             System.out.println("name:" + userInfo.getName());
         }
@@ -66,9 +67,25 @@ public class UserTest {
             userInfo.setUserSex(UserSexEnum.MAN);
             userInfo.setEmail("abc@163.com");
             userInfoList.add(userInfo);
-
         }
         userApplication.saveAllUserInfo(userInfoList);
+    }
+
+    /**
+     * 通过用户ID查询角色
+     */
+    @Test
+    public void findUserRolesByUserId() {
+        UserInfo userInfo = userApplication.findUserRoleByUserId(1L);
+        if (userInfo != null) {
+            System.out.println("name:" + userInfo.getName());
+            List<SysRole> sysRoles = userInfo.getSysRoleList();
+            if (sysRoles != null && sysRoles.size() > 0) {
+                for (SysRole sysRole : sysRoles) {
+                    System.out.println("roleName:" + sysRole.getRoleName());
+                }
+            }
+        }
     }
 
 }

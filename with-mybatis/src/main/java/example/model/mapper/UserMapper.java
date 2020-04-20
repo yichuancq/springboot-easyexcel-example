@@ -53,4 +53,11 @@ public interface UserMapper {
      * @return
      */
     List<UserInfo> selectPage();
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    UserInfo findUserRolesByUserId(Long userId);
 }
