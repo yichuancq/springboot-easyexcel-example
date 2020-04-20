@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.model.mapper.SysRoleMapper">
+
+    <resultMap id="BaseResultMap" type="example.model.role.SysRole">
+        <id column="role_id" property="id" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <!--角色状态-->
+        <result column="role_status" property="roleStatus"
+                javaType="example.model.role.RoleStatusEnum"
+                jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+    </resultMap>
+    <!--基础类List-->
+    <sql id="Base_Column_List">
+        role_id, role_name, role_status,memo, create_time,update_time,version
+    </sql>
+    <!--save role-->
+    <insert id="addSysRole"
+            useGeneratedKeys="true"
+            keyColumn="role_id"
+            keyProperty="id"
+            parameterType="example.model.role.SysRole">
+       INSERT INTO sys_role(role_name,role_status,memo,create_time,update_time,version)
+           VALUES ( #{roleName}, #{roleStatus}, #{memo}, now(), now(),0)
+
+    </insert>
+
+    <!-- 通过ID查询-->
+    <select id="findOneById" parameterType="long" resultType="example.model.role.SysRole">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sys_role where 1=1 and role_id=#{roleId}
+    </select>
+
+</mapper>
