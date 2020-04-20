@@ -37,6 +37,22 @@ public class UserTest {
     }
 
     @Test
+    public void findOneById() {
+        UserInfo userInfo = userApplication.findOneById(4);
+        if (userInfo != null) {
+            System.out.println("name:" + userInfo.getName());
+        }
+
+    }
+
+    @Test
+    public void deleteOneById() {
+        userApplication.deleteOneById(4);
+
+    }
+
+
+    @Test
     public void saveAllUser() throws Exception {
 
         List<UserInfo> userInfoList = new ArrayList<>();

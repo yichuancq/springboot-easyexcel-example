@@ -15,15 +15,44 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author yichuan
+ */
 @Service
 public class UserApplication {
 
+    /**
+     * UserMapper
+     */
     @Autowired
     private UserMapper userMapper;
 
     public List<UserInfo> getAll() {
         return userMapper.getAll();
     }
+
+
+    /**
+     * findOneById
+     *
+     * @param userId
+     * @return
+     */
+    public UserInfo findOneById(long userId) {
+        return userMapper.findOneById(userId);
+
+    }
+
+    /**
+     * deleteOneById
+     *
+     * @param userId
+     */
+    public void deleteOneById(long userId) {
+        userMapper.deleteOneById(userId);
+
+    }
+
 
     /**
      * save
@@ -67,6 +96,7 @@ public class UserApplication {
         }
         return list;
     }
+
     /**
      * @param pageNumber
      * @param pageSize
