@@ -19,6 +19,17 @@ public class PermissonApplication {
     public int addPermission(SysPermission sysPermission) {
         return sysPermissionMapper.addSysPermission(sysPermission);
     }
+
+    /**
+     *
+     * @param parentId
+     * @return
+     */
+    public List<SysPermission> selectAllMenu(Long parentId) {
+        return sysPermissionMapper.selectAllMenu(parentId);
+    }
+
+
     public List<SysPermission> findChildPermissionsById(Long permissionId) {
         return sysPermissionMapper.findChildPermissionsById(permissionId);
     }

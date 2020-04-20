@@ -30,12 +30,26 @@ public class PermissionTest {
         }
 
     }
-
+    /**
+     *递归查询父子菜单
+     */
+    @Test
+    public void findChildAllPermissionsById() {
+        Long permissionId = 1011L;
+        List<SysPermission> sysPermissions = permissonApplication.selectAllMenu(permissionId);
+        if (sysPermissions != null && sysPermissions.size() > 0) {
+            for (SysPermission temp : sysPermissions) {
+                System.out.println("" + temp.toString());
+            }
+        }
+    }
     /**
      *
      */
     @Test
     public void findOneById() {
+
+
         SysPermission sysPermission = permissonApplication.findOneById(1011L);
         if (sysPermission != null) {
             System.out.println("" + sysPermission.toString());
@@ -44,7 +58,6 @@ public class PermissionTest {
                     System.out.println("" + temp.toString());
                 }
             }
-
         }
     }
 

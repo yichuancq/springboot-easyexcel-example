@@ -16,25 +16,19 @@
                 javaType="example.model.permission.ElementTypeEnum"
                 jdbcType="VARCHAR"/>
         <!--子权限-->
-        <collection property="childPermissionList" resultMap="BatchListChildPermissionResultMap"/>
+        <collection column="permission_id" property="childPermissionList"
+                    ofType="example.model.permission.SysPermission" select="findMenuByPid"/>
     </resultMap>
+    <!--级联查询父菜单-->
+    <select id="selectAllMenu" resultMap="BaseResultMap">
+         select * from sys_permission where parent_id = 0
+    </select>
 
-    <!--rolePermission-->
-    <resultMap id="BatchListChildPermissionResultMap" type="example.model.permission.SysPermission">
-        <id column="permission_id" property="id" jdbcType="BIGINT"/>
-        <id column="parent_id" property="parentId" jdbcType="BIGINT"/>
-        <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
-        <result column="memo" property="memo" jdbcType="VARCHAR"/>
-        <result column="url" property="url" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <!--type-->
-        <result column="element_type" property="elementTypeEnum"
-                javaType="example.model.permission.ElementTypeEnum"
-                jdbcType="VARCHAR"/>
-        <result column="version" property="version" jdbcType="BIGINT"/>
-    </resultMap>
-    <!-- save-->
+    <!--级联查询子菜单-->
+    <select id="findMenuByPid" resultMap="BaseResultMap">
+         select * from sys_permission where parent_id = #{parentId}
+    </select>
+
     <insert id="addSysPermission"
             useGeneratedKeys="true"
             keyColumn="permission_id"

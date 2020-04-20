@@ -1,6 +1,7 @@
 package example.model.mapper;
 
 import example.model.permission.SysPermission;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,5 +29,15 @@ public interface SysPermissionMapper {
 
     List<SysPermission> findChildPermissionsById(Long permissionId);
 
+    /**
+     * @param permissionId
+     * @return
+     */
+    SysPermission findMenuByPid(Long permissionId);
+
+    /**
+     * @return
+     */
+    List<SysPermission> selectAllMenu(@Param("parentId") Long parentId);
 
 }
