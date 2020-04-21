@@ -1,6 +1,8 @@
 package example.model.mapper;
 
+import example.model.permission.SysPermission;
 import example.model.role.SysRole;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 系统角色
@@ -24,4 +26,11 @@ public interface SysRoleMapper {
      * @return
      */
     SysRole findOneById(Long roleId);
+
+    /**
+     *
+     * @param roleId
+     * @return
+     */
+    SysPermission selectPermissionsByRoleId(@Param("roleId") Long roleId);
 }

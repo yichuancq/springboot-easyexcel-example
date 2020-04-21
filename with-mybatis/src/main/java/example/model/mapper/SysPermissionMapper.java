@@ -35,6 +35,13 @@ public interface SysPermissionMapper {
      */
     SysPermission findMenuByPid(Long permissionId);
 
+
+    /**
+     * @param permissionId
+     * @return
+     */
+    SysPermission findParent(@Param("permissionId") Long permissionId);
+
     /**
      * @return
      */

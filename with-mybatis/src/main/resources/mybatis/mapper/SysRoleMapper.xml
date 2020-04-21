@@ -14,9 +14,8 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
         <!--权限-->
-        <collection property="sysRolePermissionList" resultMap="BatchListPermissionResultMap"/>
+        <collection property="sysPermissionList" resultMap="BatchListPermissionResultMap"/>
     </resultMap>
-
     <!--rolePermission-->
     <resultMap id="BatchListPermissionResultMap" type="example.model.permission.SysPermission">
         <id column="permission_id" property="id" jdbcType="BIGINT"/>
@@ -49,5 +48,13 @@
         <include refid="Base_Column_List"/>
         FROM sys_role where 1=1 and role_id=#{roleId}
     </select>
-
+    <!--查询角色的权限-->
+    <select id="selectPermissionsByRoleId" parameterType="long"
+            resultType="example.model.permission.SysPermission">
+        SELECT p.*
+         FROM sys_permission p
+           LEFT JOIN sys_role_permission rp ON rp.permission_id=p.permission_id
+           LEFT JOIN sys_role r ON  r.role_id= rp.role_id
+           AND r.role_id=#{roleId}
+    </select>
 </mapper>

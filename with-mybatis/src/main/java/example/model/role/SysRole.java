@@ -1,11 +1,11 @@
 package example.model.role;
 
+import example.model.permission.SysPermission;
 import example.model.user.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
 
 import java.util.List;
-
 /**
  * 角色
  *
@@ -32,7 +32,7 @@ public class SysRole extends BaseEntity {
      */
     private String memo;
     /**
-     * sysRolePermissionList
+     * sysPermissionList
      */
-    private List<SysRolePermission> sysRolePermissionList;
+    private List<SysPermission> sysPermissionList;
 }

@@ -11,7 +11,6 @@
         r.memo,
         r.version
     </sql>
-
     <!--add user role-->
     <insert id="addUserRole"
             useGeneratedKeys="true"
@@ -22,7 +21,7 @@
           (user_id, role_id,create_time,update_time,version)
            VALUES (#{userId},#{roleId},now(),now(),0)
     </insert>
-
+    <!--关联查询-->
     <select id="selectRolesByUserId" resultType="example.model.role.SysRole">
         select
         <include refid="Base_Column_List"/>

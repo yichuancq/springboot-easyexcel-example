@@ -1,5 +1,6 @@
 import example.EasyExcelMyBatisApplication;
 import example.application.RoleApplication;
+import example.model.permission.SysPermission;
 import example.model.role.RoleStatusEnum;
 import example.model.role.SysRole;
 import example.model.role.UserSysRole;
@@ -57,10 +58,23 @@ public class RoleTest {
         if (sysRoles != null) {
             System.out.println("size:" + sysRoles.size());
         }
+        //角色
         for (SysRole sysRole : sysRoles) {
             System.out.println("" + sysRole.toString());
             System.out.println("getCreateTime:" + sysRole.getCreateTime());
         }
+        //sysPermission
+        for (SysRole sysRole : sysRoles) {
+            System.out.println("role:" + sysRole.getRoleName());
+            List<SysPermission> sysPermissionList = sysRole.getSysPermissionList();
+            assert (sysPermissionList != null);
+            for (SysPermission sysPermission : sysPermissionList) {
+                if (sysPermission != null) {
+                    System.out.println("permission:" + sysPermission.getPermissionName());
+                }
+            }
+        }
+        //权限
     }
 
 }

@@ -77,6 +77,8 @@ public class UserTest {
     @Test
     public void findUserRolesByUserId() {
         UserInfo userInfo = userApplication.findUserRoleByUserId(1L);
+//        List<SysRole> sysRoleList = userInfo.getSysRoleList();
+//        assert (sysRoleList != null);
         if (userInfo != null) {
             System.out.println("name:" + userInfo.getName());
             List<SysRole> sysRoles = userInfo.getSysRoleList();
