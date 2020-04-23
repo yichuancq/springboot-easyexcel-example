@@ -1,5 +1,4 @@
 package example.model.permission;
-
 import example.model.user.BaseEntity;
 import lombok.Data;
 
@@ -35,7 +34,8 @@ public class SysPermission extends BaseEntity {
     /**
      * 父权限
      */
-    private SysPermission parentPermission;
+    //@JsonIgnore
+    // private SysPermission parentPermission;
     /**
      * 子权限
      */

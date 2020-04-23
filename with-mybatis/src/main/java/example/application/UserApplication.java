@@ -9,10 +9,7 @@ import example.vo.ResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,9 +28,10 @@ public class UserApplication {
         return userMapper.getAll();
     }
 
-    public UserInfo findUserRoleByUserId(long userId){
-        return  userMapper.findUserRolesByUserId(userId);
+    public UserInfo findUserRoleByUserId(long userId) {
+        return userMapper.findUserRolesByUserId(userId);
     }
+
     /**
      * findOneById
      *
@@ -91,9 +89,9 @@ public class UserApplication {
             model1.setEmail(userInfoTemp.getEmail());
             model1.setUserSex(userInfoTemp.getUserSex());
             //convert date
-            LocalDateTime localDateTime = userInfoTemp.getCreateTime();
-            Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            model1.setCreateTime(date);
+            //LocalDateTime localDateTime = userInfoTemp.getCreateTime();
+            // Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            model1.setCreateTime(userInfoTemp.getCreateTime());
             list.add(model1);
         }
         return list;

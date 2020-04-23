@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import example.EasyExcelMyBatisApplication;
 import example.application.PermissonApplication;
 import example.model.permission.ElementTypeEnum;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Ignore
@@ -52,18 +54,47 @@ public class PermissionTest {
                     System.out.println("" + childPermissionList.size());
                     for (SysPermission sysPermission : childPermissionList) {
                         //
-                        System.out.println("父权限:" + sysPermission.getParentPermission().getPermissionName());
+                        //System.out.println("父权限:" + sysPermission.getParentPermission().getPermissionName());
                         System.out.println("权限名称:" + sysPermission.getPermissionName());
                     }
                 }
                 System.out.println("" + temp.getPermissionName());
             }
         }
+        //集合转换为JSON
+        String str1 = JSON.toJSONString(sysPermissions);
+        System.out.println(str1);
     }
 
+
     /**
+     * 获取某个父节点下面的所有子节点
      *
+     * @param menuList
+     * @param pid
+     * @return
      */
+
+    static List<SysPermission> childMenu = new ArrayList<SysPermission>();
+
+    /**
+     * @param menuList
+     * @param pid
+     * @return
+     */
+    public static List<SysPermission> treeMenuList(List<SysPermission> menuList, Long pid) {
+        for (SysPermission mu : menuList) {
+            //遍历出父id等于参数的id，add进子节点集合
+            if (mu.getParentId() == pid) {
+                //递归遍历下一级
+                treeMenuList(menuList, mu.getId());
+                childMenu.add(mu);
+            }
+        }
+        return childMenu;
+
+    }
+
     @Test
     public void findOneById() {
         SysPermission sysPermission = permissonApplication.findOneById(1011L);
@@ -75,6 +106,14 @@ public class PermissionTest {
                 }
             }
         }
+        //
+        List<SysPermission> childList = this.treeMenuList(sysPermission.getChildPermissionList(), 0L);
+        for (SysPermission permission : childList) {
+            System.out.println("-->" + permission.toString());
+        }
+        //集合转换为JSON
+//        String str1 = JSON.toJSONString(sysPermission);
+//        System.out.println(str1);
     }
 
     @Test
