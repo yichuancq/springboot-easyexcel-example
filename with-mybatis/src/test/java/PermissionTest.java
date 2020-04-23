@@ -85,7 +85,7 @@ public class PermissionTest {
     public static List<SysPermission> treeMenuList(List<SysPermission> menuList, Long pid) {
         for (SysPermission mu : menuList) {
             //遍历出父id等于参数的id，add进子节点集合
-            if (mu.getParentId() == pid) {
+            if (mu.getParentId().equals(pid)) {
                 //递归遍历下一级
                 treeMenuList(menuList, mu.getId());
                 childMenu.add(mu);
@@ -93,6 +93,29 @@ public class PermissionTest {
         }
         return childMenu;
 
+    }
+
+
+    /**
+     * 递归获取某个父机构节点下面的所有子机构节点
+     *
+     * @param childOrg 要返回的结果
+     * @param orgList  数据库查询出来的所有机构集合
+     * @param pid      父id
+     *                 注:本身的机构节点不会添加进去
+     */
+    private void orgRecursion(List<SysPermission> childOrg, List<SysPermission> orgList, Long pid) {
+        for (SysPermission org : orgList) {
+            if (org.getParentId() != null) {
+                //遍历出父id等于参数的id，add进子节点集合
+                if (org.getParentId().equals(pid)) {
+                    //递归遍历下一级
+                    orgRecursion(childOrg, orgList, org.getId());
+                    System.out.println("--->" + org.toString());
+                    childOrg.add(org);
+                }
+            }
+        }
     }
 
     @Test
@@ -107,6 +130,10 @@ public class PermissionTest {
             }
         }
         //
+
+//        List<SysPermission> childList = sysPermission.getChildPermissionList();
+//        List<SysPermission> childList2 = new ArrayList<>();
+//        orgRecursion(childList2, childList, sysPermission.getId());
         List<SysPermission> childList = this.treeMenuList(sysPermission.getChildPermissionList(), 0L);
         for (SysPermission permission : childList) {
             System.out.println("-->" + permission.toString());
