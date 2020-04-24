@@ -32,11 +32,6 @@ public class SysPermission extends BaseEntity {
      */
     private ElementTypeEnum elementTypeEnum;
     /**
-     * 父权限
-     */
-    //@JsonIgnore
-    // private SysPermission parentPermission;
-    /**
      * 子权限
      */
     private List<SysPermission> childPermissionList;

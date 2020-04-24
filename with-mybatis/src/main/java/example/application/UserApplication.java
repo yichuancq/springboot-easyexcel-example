@@ -88,9 +88,6 @@ public class UserApplication {
             model1.setAddress(userInfoTemp.getAddress());
             model1.setEmail(userInfoTemp.getEmail());
             model1.setUserSex(userInfoTemp.getUserSex());
-            //convert date
-            //LocalDateTime localDateTime = userInfoTemp.getCreateTime();
-            // Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
             model1.setCreateTime(userInfoTemp.getCreateTime());
             list.add(model1);
         }
