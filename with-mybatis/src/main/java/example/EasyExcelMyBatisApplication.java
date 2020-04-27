@@ -24,13 +24,6 @@ import static springfox.documentation.builders.PathSelectors.regex;
  * 扫描mapper
  */
 @MapperScan("example.model.mapper")
-//https://www.cnblogs.com/goolu/p/8820318.html
-//Mybatis 多表查询及查询结果映射
-//mybatis递归查询父子菜单
-//https://blog.csdn.net/m0_37882063/article/details/88633781
-//https://blog.csdn.net/qq_36827957/article/details/78541832
-//https://blog.csdn.net/wangruoao/article/details/85004060
-
 public class EasyExcelMyBatisApplication {
 
     public static void main(String[] args) {
