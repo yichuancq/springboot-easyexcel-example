@@ -1,4 +1,4 @@
-import example.EasyExcelMyBatisApplication;
+import example.MyBatisApplication;
 import example.application.RoleApplication;
 import example.model.permission.SysPermission;
 import example.model.role.RoleStatusEnum;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = EasyExcelMyBatisApplication.class)
+@SpringBootTest(classes = MyBatisApplication.class)
 public class RoleTest {
     @Autowired
     private RoleApplication roleApplication;

@@ -1,4 +1,4 @@
-import example.EasyExcelMyBatisApplication;
+import example.MyBatisApplication;
 import example.application.UserApplication;
 import example.model.role.SysRole;
 import example.model.user.UserInfo;
@@ -17,22 +17,18 @@ import java.util.List;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = EasyExcelMyBatisApplication.class)
+@SpringBootTest(classes = MyBatisApplication.class)
 public class UserTest {
     private final static Logger logger = LoggerFactory.getLogger(UserTest.class);
-
     @Autowired
     UserApplication userApplication;
-
     @Test
     public void testLogger() {
         logger.info("info日志记录测试--------------------------");
         logger.error("error日志记录测试--------------------------");
         logger.debug("error日志记录测试--------------------------");
         try {
-
             System.out.println(3 / 0);
-
         } catch (Exception e) {
             logger.error("exception error -------------", e);
         }

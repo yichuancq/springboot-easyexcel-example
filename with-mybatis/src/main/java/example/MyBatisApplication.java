@@ -24,10 +24,10 @@ import static springfox.documentation.builders.PathSelectors.regex;
  * 扫描mapper
  */
 @MapperScan("example.model.mapper")
-public class EasyExcelMyBatisApplication {
+public class MyBatisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EasyExcelMyBatisApplication.class, args);
+        SpringApplication.run(MyBatisApplication.class, args);
     }
 
     /**

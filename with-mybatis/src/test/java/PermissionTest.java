@@ -1,5 +1,5 @@
 import com.alibaba.fastjson.JSON;
-import example.EasyExcelMyBatisApplication;
+import example.MyBatisApplication;
 import example.application.PermissonApplication;
 import example.model.permission.ElementTypeEnum;
 import example.model.permission.SysPermission;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = EasyExcelMyBatisApplication.class)
+@SpringBootTest(classes = MyBatisApplication.class)
 public class PermissionTest {
 
     @Autowired
