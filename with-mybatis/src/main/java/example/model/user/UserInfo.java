@@ -2,6 +2,8 @@ package example.model.user;
 
 import example.model.role.SysRole;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
  */
 @Data
 @ToString
+@Getter
+@Setter
 public class UserInfo extends BaseEntity {
     private Long id;
     private String name;

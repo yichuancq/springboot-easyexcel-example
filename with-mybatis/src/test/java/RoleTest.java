@@ -45,7 +45,7 @@ public class RoleTest {
         UserSysRole userSysRole = new UserSysRole();
         userSysRole.setId(null);
         userSysRole.setUserId(1L);
-        userSysRole.setRoleId(1021L);
+        userSysRole.setRoleId(1011L);
         int result = roleApplication.AddUserRole(userSysRole);
         if (result > 0) {
             System.out.println("添加成功");

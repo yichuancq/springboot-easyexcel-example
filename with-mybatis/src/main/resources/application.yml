@@ -4,3 +4,12 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+mybatis:
+  configuration:
+    # 缓存开启
+    cache-enabled: true
+    # 懒加载开启
+    lazy-loading-enabled: true
+    # SQL打印日志所使用的日志类 - 关键
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
