@@ -48,8 +48,8 @@ public class UserApplication {
      *
      * @param userId
      */
-    public void deleteOneById(long userId) {
-        userMapper.deleteOneById(userId);
+    public Integer deleteOneById(long userId) {
+        return userMapper.deleteOneById(userId);
 
     }
 

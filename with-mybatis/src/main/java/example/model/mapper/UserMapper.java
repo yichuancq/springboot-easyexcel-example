@@ -22,7 +22,7 @@ public interface UserMapper {
      *
      * @param userId
      */
-    void deleteOneById(Long userId);
+    Integer deleteOneById(Long userId);
 
     /**
      * 通过ID查询

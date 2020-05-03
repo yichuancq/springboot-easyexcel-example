@@ -50,6 +50,18 @@ public class UserController {
     }
 
     /**
+     * 分页查询
+     */
+    @GetMapping("/deleteUserById")
+    @ApiOperation(value = "deleteUserById", notes = "deleteUserById")
+    public ResponseEntity deleteUserById(long userId)
+            throws Exception {
+        logger.info("userData");
+        return ResponseEntity.ok(userApplication.deleteOneById(userId));
+    }
+
+
+    /**
      * localhost:8080/exportUserInfoExcel?limit=1000&page=1
      *
      * @param response

@@ -28,7 +28,7 @@
     </sql>
 
     <!--通过ID删除-->
-    <delete id="deleteOneById">
+    <delete id="deleteOneById" >
       delete from user_info where user_id=#{userId}
     </delete>
     <!--返回所有记录-->

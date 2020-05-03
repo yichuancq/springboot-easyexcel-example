@@ -19,9 +19,10 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = MyBatisApplication.class)
 public class UserTest {
-    private final static Logger logger = LoggerFactory.getLogger(UserTest.class);
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     UserApplication userApplication;
+
     @Test
     public void testLogger() {
         logger.info("info日志记录测试--------------------------");
