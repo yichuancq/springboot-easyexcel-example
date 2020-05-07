@@ -1,6 +1,9 @@
 package example.model.permission;
+
 import example.model.user.BaseEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -9,6 +12,9 @@ import java.util.List;
  *
  * @author yichuan
  */
+
+@Getter
+@Setter
 @Data
 public class SysPermission extends BaseEntity {
     /**

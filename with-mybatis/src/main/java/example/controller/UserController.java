@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,22 @@ public class UserController {
 
     @Autowired
     private UserApplication userApplication;
+
+
+    /**
+     * 通过用户Id查询用户角色权限
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/getUserPermissionsByUserId")
+    @ApiOperation(value = "getAll", notes = "getAll")
+    public ResponseEntity getUserPermissionsByUserId(@RequestParam Long userId) throws Exception {
+        logger.info("getUserPermissionsByUserId:{}", userId);
+        return ResponseEntity.ok(userApplication.getUserPermissionsByUserId(userId));
+    }
+
 
     /**
      * 查询所有
@@ -50,7 +67,9 @@ public class UserController {
     }
 
     /**
-     * 分页查询
+     * @param userId
+     * @return
+     * @throws Exception
      */
     @GetMapping("/deleteUserById")
     @ApiOperation(value = "deleteUserById", notes = "deleteUserById")
@@ -81,6 +100,4 @@ public class UserController {
         ExcelUtil.writeExcel(response, userApplication.exportUserInfo(page, limit),
                 fileName, sheetName, new UserInfoExportVo());
     }
-
-
 }

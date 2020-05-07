@@ -3,14 +3,20 @@ package example.model.role;
 import example.model.permission.SysPermission;
 import example.model.user.BaseEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+
 /**
  * 角色
  *
  * @author yichuan
  */
+
+@Getter
+@Setter
 @Data
 @ToString
 public class SysRole extends BaseEntity {

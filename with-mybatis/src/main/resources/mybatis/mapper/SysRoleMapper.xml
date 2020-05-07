@@ -46,15 +46,22 @@
     <select id="findOneById" parameterType="long" resultType="example.model.role.SysRole">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM sys_role where 1=1 and role_id=#{roleId}
+        FROM sys_role WHERE 1=1 AND role_id=#{roleId}
     </select>
+
     <!--查询角色的权限-->
-    <select id="selectPermissionsByRoleId" parameterType="long"
+    <select id="selectPermissionsByRoleId"
+            parameterType="long"
             resultType="example.model.permission.SysPermission">
-        SELECT p.*
-         FROM sys_permission p
-           LEFT JOIN sys_role_permission rp ON rp.permission_id=p.permission_id
-           LEFT JOIN sys_role r ON  r.role_id= rp.role_id
-           AND r.role_id=#{roleId}
+        SELECT p.permission_id AS id, <!--注意用别名和实体字段一一对应-->
+        p.permission_name AS permissionName,<!--注意用别名和实体字段一一对应-->
+        p.url AS url,<!--注意用别名和实体字段一一对应-->
+        p.element_type AS elementTypeEnum,<!--注意用别名和实体字段一一对应-->
+        p.memo AS memo,
+        p.parent_id AS parentId<!--注意用别名和实体字段一一对应-->
+        FROM sys_permission p
+        INNER JOIN sys_role_permission rp ON rp.permission_id=p.permission_id
+        INNER JOIN sys_role r ON r.role_id= rp.role_id
+        AND r.role_id=#{roleId}
     </select>
 </mapper>

@@ -3,7 +3,11 @@ package example.application;
 
 import com.github.pagehelper.PageHelper;
 import example.model.excel.UserInfoExportVo;
+import example.model.mapper.SysRoleMapper;
 import example.model.mapper.UserMapper;
+import example.model.mapper.UserRoleMapper;
+import example.model.permission.SysPermission;
+import example.model.role.SysRole;
 import example.model.user.UserInfo;
 import example.vo.ResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +22,12 @@ import java.util.List;
 @Service
 public class UserApplication {
 
-    /**
-     * UserMapper
-     */
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+
     @Autowired
     private UserMapper userMapper;
 
@@ -28,6 +35,28 @@ public class UserApplication {
         return userMapper.getAll();
     }
 
+
+    /**
+     * @param userId
+     * @return
+     */
+    public List<SysPermission> getUserPermissionsByUserId(Long userId) {
+        List<SysPermission> sysPermissionList = new ArrayList<>();
+        List<SysRole> sysRoles = userRoleMapper.selectRolesByUserId(userId);
+        //permission
+        for (SysRole sysRole : sysRoles) {
+            System.out.println("role:" + sysRole.getRoleName());
+            List<SysPermission> sysPermissions = sysRoleMapper.selectPermissionsByRoleId(sysRole.getId());
+            sysPermissionList.addAll(sysPermissions);
+        }
+        return sysPermissionList;
+    }
+
+
+    /**
+     * @param userId
+     * @return
+     */
     public UserInfo findUserRoleByUserId(long userId) {
         return userMapper.findUserRolesByUserId(userId);
     }
@@ -40,7 +69,6 @@ public class UserApplication {
      */
     public UserInfo findOneById(long userId) {
         return userMapper.findOneById(userId);
-
     }
 
     /**
@@ -50,9 +78,7 @@ public class UserApplication {
      */
     public Integer deleteOneById(long userId) {
         return userMapper.deleteOneById(userId);
-
     }
-
 
     /**
      * save
@@ -67,7 +93,6 @@ public class UserApplication {
 
     public int saveAllUserInfo(List<UserInfo> userInfos) {
         return userMapper.addAllUserInfo(userInfos);
-
     }
 
     /**

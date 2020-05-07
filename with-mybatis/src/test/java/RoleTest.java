@@ -1,5 +1,6 @@
 import example.MyBatisApplication;
 import example.application.RoleApplication;
+import example.model.mapper.SysRoleMapper;
 import example.model.permission.SysPermission;
 import example.model.role.RoleStatusEnum;
 import example.model.role.SysRole;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Ignore
@@ -19,6 +21,9 @@ import java.util.List;
 public class RoleTest {
     @Autowired
     private RoleApplication roleApplication;
+
+    @Resource
+    private SysRoleMapper sysRoleMapper;
 
     /**
      *
@@ -52,29 +57,31 @@ public class RoleTest {
         }
     }
 
+    /**
+     * 通过用户Id查询用户角色权限
+     */
     @Test
     public void findRoleByUserId() {
         List<SysRole> sysRoles = roleApplication.selectRolesByUserId(1L);
+        //user
         if (sysRoles != null) {
             System.out.println("size:" + sysRoles.size());
         }
-        //角色
+        //role
         for (SysRole sysRole : sysRoles) {
             System.out.println("" + sysRole.toString());
             System.out.println("getCreateTime:" + sysRole.getCreateTime());
         }
-        //sysPermission
+        //permission
         for (SysRole sysRole : sysRoles) {
             System.out.println("role:" + sysRole.getRoleName());
-            List<SysPermission> sysPermissionList = sysRole.getSysPermissionList();
+            List<SysPermission> sysPermissionList = sysRoleMapper.selectPermissionsByRoleId(sysRole.getId());
             assert (sysPermissionList != null);
-            for (SysPermission sysPermission : sysPermissionList) {
-                if (sysPermission != null) {
-                    System.out.println("permission:" + sysPermission.getPermissionName());
+            for (SysPermission permission : sysPermissionList) {
+                if (permission != null) {
+                    System.out.println("permission:" + permission.toString());
                 }
             }
         }
-        //权限
     }
-
 }
