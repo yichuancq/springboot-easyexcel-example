@@ -15,10 +15,6 @@
         <result column="element_type" property="elementTypeEnum"
                 javaType="example.model.permission.ElementTypeEnum"
                 jdbcType="VARCHAR"/>
-        <!--节点的父节点就不进行递归查询了-->
-        <!--        <association property="parentPermission" column="parent_id"-->
-        <!--                     javaType="example.model.permission.SysPermission" select="findParent" fetchType="lazy">-->
-        <!--        </association>-->
         <!--子权限-->
         <collection column="permission_id" property="childPermissionList"
                     ofType="example.model.permission.SysPermission" select="findMenuByPid" fetchType="lazy"/>
@@ -41,10 +37,6 @@
      INSERT INTO sys_permission(parent_id,element_type,url,permission_name,memo,create_time,update_time,version)
            VALUES ( #{parentId},#{elementTypeEnum}, #{url}, #{permissionName},#{memo}, now(), now(),0)
      </insert>
-    <!--    <select id="findParent" resultMap="BaseResultMap">-->
-    <!--        select * from sys_permission where permission_id = #{permissionId}-->
-    <!--    </select>-->
-
     <select id="findOneById"
             resultMap="BaseResultMap">
         SELECT *
